@@ -13,7 +13,7 @@ export async function POST({ request }) {
 	const { messages } = await request.json();
 
 	const { object, finishReason } = await generateObject({
-		model: openai('gpt-4o'),
+		model: openai('gpt-4.1-mini'),
 		messages,
 		schema: z.object({
 			term: z.string(),
