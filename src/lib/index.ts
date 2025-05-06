@@ -1,1 +1,5 @@
-// place files you want to import through the `$lib` alias in this folder.
+import type { OurFileRouter } from '$lib/server/ut';
+
+import { generateSvelteHelpers } from '@uploadthing/svelte';
+
+export const { createUploader, createUploadThing } = generateSvelteHelpers<OurFileRouter>();
