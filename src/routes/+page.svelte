@@ -1,39 +1,25 @@
 <script lang="ts">
-	import { superForm } from 'sveltekit-superforms';
-	import SuperDebug from 'sveltekit-superforms';
-	import { createUploader } from '$lib';
-	import { UploadButton } from '@uploadthing/svelte';
+	import { enhance } from '$app/forms';
+	import { Chat } from '@ai-sdk/svelte';
 
-	let { data } = $props();
+	let chat = new Chat();
 
-	let { form, enhance } = superForm(data.form);
-
-	const uploader = createUploader('imageUploader', {
-		onClientUploadComplete: (res) => {
-			console.log(`onClientUploadComplete`, res);
-			$form.files = res.map((f) => {
-				return {
-					name: f.name,
-					contentType: f.type,
-					url: f.ufsUrl
-				};
-			});
-		},
-		onUploadError: (error: Error) => {
-			alert(`ERROR! ${error.message}`);
-		},
-		url: 'api/ut'
-	});
+	let attachments = $state<FileList | undefined>(undefined);
 </script>
 
-<SuperDebug data={form} />
-<form use:enhance method="POST" action="?/new">
-	<input
-		bind:value={$form.prompt}
-		placeholder="Additional Context"
-		class="flex-grow rounded-lg p-2 ring-2 ring-gray-400"
-	/>
-	<UploadButton multiple {uploader} />
-
-	<button class="rounded-lg bg-sky-300 px-4 py-2 font-mono font-bold" type="submit">Send</button>
-</form>
+<!-- <SuperDebug data={form} /> -->
+<main class="mx-auto mt-4 max-w-lg">
+	<h1 class="mb-6 text-center text-4xl font-bold">Shindlr</h1>
+	<form
+		onsubmit={(e) => {
+			chat.handleSubmit(e, { experimental_attachments: attachments });
+			attachments = undefined;
+		}}
+		use:enhance
+		class="flex flex-col gap-4"
+	>
+		<input placeholder="Provide some context..." class="input w-full" bind:value={chat.input} />
+		<input type="file" class="file-input w-full" multiple bind:files={attachments} />
+		<button class="btn btn-primary" type="submit">Send</button>
+	</form>
+</main>
