@@ -29,6 +29,7 @@
 		"ai": "^4.3.13",
 		"bits-ui": "^1.5.0",
 		"clsx": "^2.1.1",
+		"drizzle-kit": "^0.31.1",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-svelte": "^3.0.0",
@@ -56,8 +57,11 @@
 	},
 	"packageManager": "pnpm@10.8.1+sha512.c50088ba998c67b8ca8c99df8a5e02fd2ae2e2b29aaf238feaa9e124248d3f48f9fb6db2424949ff901cffbb5e0f0cc1ad6aedb602cd29450751d11c35023677",
 	"dependencies": {
+		"@types/node": "^22.15.19",
 		"@uploadthing/svelte": "^7.3.0",
 		"daisyui": "^5.0.35",
+		"dotenv": "^16.5.0",
+		"drizzle-orm": "^0.43.1",
 		"mode-watcher": "0.5.1",
 		"uploadthing": "^7.6.0"
 	}
