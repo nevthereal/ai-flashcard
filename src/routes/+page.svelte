@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { Button } from '$lib/components/ui/button';
+	import { Input } from '$lib/components/ui/input';
 	import { Chat } from '@ai-sdk/svelte';
 
 	let chat = new Chat();
@@ -18,8 +20,8 @@
 		use:enhance
 		class="flex flex-col gap-4"
 	>
-		<input placeholder="Provide some context..." class="input w-full" bind:value={chat.input} />
-		<input type="file" class="file-input w-full" multiple bind:files={attachments} />
-		<button class="btn btn-primary" type="submit">Send</button>
+		<Input placeholder="Provide some context..." bind:value={chat.input} />
+		<Input type="file" multiple bind:files={attachments} />
+		<Button variant="default" type="submit">Send</Button>
 	</form>
 </main>
