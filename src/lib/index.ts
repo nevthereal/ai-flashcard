@@ -14,8 +14,8 @@ export const ourFileRouter = {
 			 * For full list of options and defaults, see the File Route API reference
 			 * @see https://docs.uploadthing.com/file-routes#route-config
 			 */
-			maxFileSize: '4MB',
-			maxFileCount: 1
+			maxFileSize: '512MB',
+			maxFileCount: 20
 		}
 	}).onUploadComplete(async ({ file }) => {
 		console.log('file url', file.ufsUrl);
