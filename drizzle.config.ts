@@ -1,8 +1,8 @@
 import 'dotenv/config';
 import { defineConfig } from 'drizzle-kit';
 
-if (!process.env.DB_URL || !process.env.DB_TOKEN) {
-	throw new Error('DB_URL or DB_TOKEN not found in .env file');
+if (!process.env.DB_URL) {
+	throw new Error('DB_URL not found in .env file');
 }
 
 export default defineConfig({

@@ -12,7 +12,7 @@ export async function POST({ request }) {
 	console.log('hit');
 	const { messages } = await request.json();
 
-	const { object } = await generateObject({
+	const { object: generation } = await generateObject({
 		model: openai('gpt-4o'),
 		messages,
 		schema: z.object({
@@ -49,7 +49,5 @@ export async function POST({ request }) {
 			*   Strive for clarity and accuracy in each flashcard.`
 	});
 
-	console.log(object);
-
-	return new Response(JSON.stringify(object));
+	return new Response(JSON.stringify({ success: true }));
 }
